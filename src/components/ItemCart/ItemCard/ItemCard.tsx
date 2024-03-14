@@ -49,7 +49,7 @@ export const ItemCard = ({ item }: Props) => {
                     </Typography>
                     <Stack direction="row" >
                         <Typography fontSize={20} fontWeight={10} margin={1}>
-                            Количество
+                            Количество:
                         </Typography>
                         <Button onClick={decreaseHandler}>-</Button>
                         <Typography fontSize={20} fontWeight={5} margin={1}>
@@ -70,7 +70,7 @@ export const ItemCard = ({ item }: Props) => {
                     </Stack>
                     <Stack direction="row" >
                         <Typography fontSize={20} fontWeight={10} margin={1}>
-                            Удалить из корзины
+                            Удалить из корзины:
                         </Typography>
                         <Button onClick={deleteHandler}>
                             <DeleteOutlined />

@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import { ItemCart } from "./components/ItemCard/ItemCart.tsx";
+import { ItemCart } from "./components/ItemCart/ItemCart.tsx";
 import { FinalSum } from "./components/FinalSum/FinalSum.tsx";
 import { AppDispatch, store } from "./store/store.ts"
 import { Provider, useDispatch, useSelector } from "react-redux";
