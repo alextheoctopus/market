@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react"
 import { ReduxFetch } from "../../store/features/itemsStore.ts";
 import { ItemCard } from "../ItemBin/ItemCard/ItemCard.tsx";
 import { Stack } from "@mui/material";
-import { Item, Props } from "../../App.tsx";
-
+import { Props } from "../../App.tsx";
+export type Item = {
+    id: number
+    title: string,
+    thumbnail: string,
+    quantity: number,
+    price: number
+  }
 export const ItemBin = ({ dataRedux }: Props) => {
     const [data, setData] = useState(dataRedux.items);
     useEffect(() => {
@@ -15,7 +21,7 @@ export const ItemBin = ({ dataRedux }: Props) => {
             {data.loading ? <div>Loading...</div> :
                 data.data.carts ?
                     data.data.carts.map((item: Item, index: number) => (
-                        <ItemCard item={item} dataRedux={dataRedux} key={index}></ItemCard>
+                        <ItemCard item={item} key={index}></ItemCard>
                     )) :
                     data.error ? <div>{data.error}</div> : ''}
         </Stack>)

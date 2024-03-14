@@ -8,13 +8,14 @@ export const fetchItems = createAsyncThunk('fetchItems', async () => {
 
 export type ReduxFetch = {
     items: {
+        sumPrice:number,
         data: {
             carts: [{
-                index: 0,
-                title: '',
-                thumbnail: '',
-                quantity: 1,
-                price: 0
+                id: number,
+                title: string,
+                thumbnail: string,
+                quantity: number,
+                price: number
             }]
         },
         loading: boolean;
@@ -25,10 +26,10 @@ export const itemsStore = createSlice(
     {
         name: "items",
         initialState: {
-            id: 0,
+            sumPrice: 0,
             data: {
                 carts: [{
-                    index: 0,
+                    id: 0,
                     title: '',
                     thumbnail: '',
                     quantity: 1,
@@ -39,13 +40,33 @@ export const itemsStore = createSlice(
             error: '',
         },
         reducers: {
-            increaseNumber: (state) => {
-                state.id+=5;
+            increaseNumber: (state, action) => {
+                let index = state.data.carts.findIndex(el => el.id === action.payload);
+                if (state.data.carts[index].quantity >= 10) {
+                    state.data.carts[index].quantity = 10;
+                } else {
+                    state.data.carts[index].quantity++;
+                }
             },
-            decreaseNumber: (state) => {
+            decreaseNumber: (state, action) => {
+                let index = state.data.carts.findIndex(el => el.id === action.payload);
+                if (state.data.carts[index].quantity <= 1) {
+                    state.data.carts[index].quantity = 1;
+                } else {
+                    state.data.carts[index].quantity--;
+                }
+
             },
-            deleteItem: (state) => {
-                state.data.carts.splice(state.id, 1);
+            deleteItem: (state, action) => {
+                let index = state.data.carts.findIndex(el => el.id === action.payload);
+                state.data.carts.splice(index, 1);
+            },
+            sumBinItems: (state) => {
+                let sum = 0;
+                state.data.carts.forEach((item) => {
+                    sum += item.price*item.quantity;
+                });
+                state.sumPrice = sum;
             }
         },
         extraReducers(builder) {
@@ -64,4 +85,5 @@ export const itemsStore = createSlice(
                 });
         },
     });
+export const { increaseNumber, decreaseNumber, deleteItem, sumBinItems } = itemsStore.actions;
 export default itemsStore.reducer;

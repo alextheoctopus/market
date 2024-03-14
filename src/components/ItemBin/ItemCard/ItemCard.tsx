@@ -1,12 +1,10 @@
 import React from "react";
 import "./style.css";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch, useSelector } from "react-redux";
-import increaseNumber, { ReduxFetch } from "../../../store/features/itemsStore.ts";
+import { useDispatch } from "react-redux";
+import { decreaseNumber, deleteItem, increaseNumber, sumBinItems } from "../../../store/features/itemsStore.ts";
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
-import { Props } from "../../../App.tsx";
-import { Reducer, ThunkAction } from "@reduxjs/toolkit";
+import { Item } from "../ItemBin.tsx";
 
 let cardStyle = {
     backgroundColor: "azure",
@@ -20,20 +18,26 @@ let cardStyle = {
 let imgStyle = {
     border: "3px solid white",
     borderRadius: "50%",
-    height: "160px",
+    height: "190px",
     padding: 5,
     alignItems: "center"
 }
-export const ItemCard = ({ item, dataRedux }: Props) => {
+type Props = {
+    item: Item
+}
+export const ItemCard = ({ item }: Props) => {
     const dispatch: any = useDispatch();
-    const id: any = useSelector((state: RootState) => state.items.id)
+
     const increaseHandler = () => {
-        dispatch(increaseNumber);
-        console.log(id);
+        dispatch(increaseNumber(item.id));
     }
     const decreaseHandler = () => {
-        // dispatch(decreaseNumber(item.index - 1))
+        dispatch(decreaseNumber(item.id));
     }
+    const deleteHandler = () => {
+        dispatch(deleteItem(item.id))
+    }
+    dispatch(sumBinItems());
     return (
         <Box sx={cardStyle}>
             <Grid container>
@@ -59,7 +63,6 @@ export const ItemCard = ({ item, dataRedux }: Props) => {
                         </Typography>
                         <Button onClick={decreaseHandler}>-</Button>
                     </Stack>
-
                     <Stack direction="row" >
                         <Typography fontSize={20} fontWeight={10} margin={1}>
                             Цена:
@@ -67,14 +70,17 @@ export const ItemCard = ({ item, dataRedux }: Props) => {
                         <Typography fontSize={20} fontWeight={5} margin={1}>
                             {item.price}
                         </Typography>
+                        <Typography fontSize={20} fontWeight={10} margin={1}>
+                            руб.
+                        </Typography>
                     </Stack>
                     <Stack direction="row" >
                         <Typography fontSize={20} fontWeight={10} margin={1}>
                             Удалить из корзины
                         </Typography>
-                        <Box paddingTop={1.5}>
+                        <Button onClick={deleteHandler}>
                             <DeleteOutlined />
-                        </Box>
+                        </Button>
                     </Stack>
                 </Grid>
             </Grid>
