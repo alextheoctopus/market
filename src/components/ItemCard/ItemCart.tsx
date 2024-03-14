@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { ItemCard } from "../ItemBin/ItemCard/ItemCard.tsx";
+import { ItemCard } from "./ItemCard/ItemCard.tsx";
 import { Stack } from "@mui/material";
 import { Props } from "../../App.tsx";
 export type Item = {
@@ -9,7 +9,7 @@ export type Item = {
     quantity: number,
     price: number
 }
-export const ItemBin = ({ dataRedux }: Props) => {
+export const ItemCart = ({ dataRedux }: Props) => {
     const [data, setData] = useState(dataRedux.items);
     useEffect(() => {
         setData(dataRedux.items);

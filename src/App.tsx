@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import { ItemBin } from "./components/ItemBin/ItemBin.tsx";
+import { ItemCart } from "./components/ItemCard/ItemCart.tsx";
 import { FinalSum } from "./components/FinalSum/FinalSum.tsx";
 import { AppDispatch, store } from "./store/store.ts"
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -32,7 +32,7 @@ const MainApp = () => {
   return (
     <Grid container>
       <Grid item xs={9}>
-        <ItemBin dataRedux={dataRedux}></ItemBin>
+        <ItemCart dataRedux={dataRedux}></ItemCart>
       </Grid>
       <Grid item xs={3}>
         <FinalSum dataRedux={dataRedux}></FinalSum>

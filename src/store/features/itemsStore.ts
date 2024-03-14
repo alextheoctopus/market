@@ -61,7 +61,7 @@ export const itemsStore = createSlice(
                 let index = state.data.carts.findIndex(el => el.id === action.payload);
                 state.data.carts.splice(index, 1);
             },
-            sumBinItems: (state) => {
+            sumCartItems: (state) => {
                 let sum = 0;
                 state.data.carts.forEach((item) => {
                     sum += item.price*item.quantity;
@@ -85,5 +85,5 @@ export const itemsStore = createSlice(
                 });
         },
     });
-export const { increaseNumber, decreaseNumber, deleteItem, sumBinItems } = itemsStore.actions;
+export const { increaseNumber, decreaseNumber, deleteItem, sumCartItems } = itemsStore.actions;
 export default itemsStore.reducer;

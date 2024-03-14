@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { decreaseNumber, deleteItem, increaseNumber, sumBinItems } from "../../../store/features/itemsStore.ts";
+import { decreaseNumber, deleteItem, increaseNumber, sumCartItems } from "../../../store/features/itemsStore.ts";
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
-import { Item } from "../ItemBin.tsx";
+import { Item } from "../ItemCart.tsx";
 
 let cardStyle = {
     backgroundColor: "azure",
@@ -34,7 +34,7 @@ export const ItemCard = ({ item }: Props) => {
     const deleteHandler = () => {
         dispatch(deleteItem(item.id))
     }
-    dispatch(sumBinItems());
+    dispatch(sumCartItems());
     return (
         <Box sx={cardStyle}>
             <Stack direction="row" >
