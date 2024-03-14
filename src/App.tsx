@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import { useEffect } from "react";
 import React from "react";
 import { ItemBin } from "./components/ItemBin/ItemBin.tsx";
 import { FinalSum } from "./components/FinalSum/FinalSum.tsx";
@@ -29,7 +28,6 @@ const AppRedux = () => {
 }
 const MainApp = () => {
   const dataRedux = useSelector((state: ReduxFetch) => state);
-  console.log("dataRedux", dataRedux);
 
   return (
     <Grid container>
