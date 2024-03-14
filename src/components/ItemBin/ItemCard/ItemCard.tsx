@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.css";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { decreaseNumber, deleteItem, increaseNumber, sumBinItems } from "../../../store/features/itemsStore.ts";
